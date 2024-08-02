@@ -25,7 +25,7 @@ export class AppComponent {
         if (configData && configData.backend_host) {
           this.configService.setConfigSubject(configData);
         } else {
-          // this.configService.setConfigSubject({ tenant_name: 'chat', backend_host: 'https://xcagpmil7jhilripq6eesyyzmy0ecdsh.lambda-url.ap-south-1.on.aws'});
+          this.configService.setConfigSubject({ tenant_name: 'chat', backend_host: 'https://xcagpmil7jhilripq6eesyyzmy0ecdsh.lambda-url.ap-south-1.on.aws'});
           throw new Error(`Could not find tenant`);
         }
       }
