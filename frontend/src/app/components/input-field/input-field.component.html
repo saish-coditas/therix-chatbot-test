@@ -1,0 +1,12 @@
+<div class="input-container">
+  <div class="input-group">
+    <input #inputField type="text" placeholder="Ask anything..." [(ngModel)]="messageText" id="chatbot-inputbox"
+      class="input-group__input" autocomplete="none" (keyup.enter)="sendMessage(messageText)" [disabled]="disable" autofocus />
+    <a class="suffix microphone" [routerLink]="['/talk']" >
+      <img src="assets/icons/microphone.svg" alt="microphone">
+    </a>
+    <a class="suffix send" (click)="sendMessage(messageText)" [ngClass]="{'disabled': messageText.trim() == ''}">
+      <img src="assets/icons/send-icon.svg" alt="send">
+    </a>
+  </div>
+</div>

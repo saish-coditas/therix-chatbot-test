@@ -1,0 +1,56 @@
+#conversation {
+    .message {
+        font-size: 57.6px;
+        font-weight: 600;
+        line-height: 69.12px;
+        // transition: display 200ms;
+        // padding-bottom: 32px;
+        // animation: Moveup 1.5s ease-out;
+        // animation-fill-mode: forwards;
+        &:not(:last-child) {
+            transform: scale(0.5);
+            transition: transform 1s ease-out;
+        }
+        &.fadeout {
+            animation: SlideupAndFadeOut 1.5s ease-out;
+            animation-fill-mode: forwards;
+        }
+        &.user {
+            color: #FCFCFA;
+        }
+        &.system {
+            background: linear-gradient(90.78deg, #CA76FB 0%, #00EEEE 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+
+}
+
+@keyframes Moveup {
+    0% {
+        opacity: 0;
+        margin-bottom: -100px;
+    }
+    100% {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes SlideupAndFadeOut {
+    0% {
+        opacity: 1;
+        margin-top: 0;
+        height: '*';
+        transform: scale('*');
+    }
+    100% {
+        opacity: 0;
+        margin-top: -100px;
+        transform: scale(0);
+        display: none;
+        // height: 0;
+    }
+}

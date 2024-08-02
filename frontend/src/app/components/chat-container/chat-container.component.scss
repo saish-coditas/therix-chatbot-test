@@ -1,0 +1,140 @@
+.chat-container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  transition: 1s all ease-out;
+  -webkit-transition: 1s all linear;
+  -moz-transition: 1s all linear;
+  -ms-transition: 1s all linear;
+  -o-transition: 1s all linear;
+  padding: 0 15px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  height: 100%;
+
+  & > .chat-container__wrapper {
+    display: grid;
+    gap: 24px;
+    padding-bottom: 64px;
+  }
+  .card {
+    max-width: 70%;
+    min-width: 402px;
+    width: 100%;
+    padding: 24px 32px;
+    transition: height 1s ease-out;
+    // animation: FadeOut 0.8s ease-out;
+    .card-text {
+      font-size: 22px;
+    }
+    .citation {
+      padding: 0 1em;
+      margin-top: 2em;
+      border-top: 1px solid;
+    }
+  }
+  .animate {
+    position: relative;
+
+  }
+  .user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    margin-left: auto;
+    justify-content: flex-end;
+    font-family: 'Sora-Light';
+    margin-top: 8px;
+    .card {
+      border-radius: 24px 48px 8px 24px;
+      background: #4E4957;
+    }
+  }
+
+  .system {
+    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    word-wrap: break-word;
+    font-family: 'Sora-Light';
+
+    .avatar {
+      border-radius: 40px;
+      background: #242129;
+      border: 1px solid #393540;
+      height: 48px;
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-animation: spin 0.6s linear 1.5s;
+      -moz-animation: spin 0.6s linear 1.5s;
+      animation: spin 0.6s linear 1.5s;
+    }
+    .card {
+      border-radius: 8px 24px 24px 48px;
+      background: linear-gradient(97.59deg, #412F66 3.29%, #A376FF 100%);
+    }
+  }
+
+}
+.floating-btn {
+  border-radius: 40px;
+  background: #242129;
+  border: 1px solid #393540;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 15px;
+  bottom: 130px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@media (max-width: 640px){
+  .chat-container {
+      & > .chat-container__wrapper {
+       padding-bottom: 24px; 
+      }
+      .card {
+        min-width: 260px;
+        .card-text {
+          font-size: 16px;
+        }
+      }
+  }
+
+  .floating-btn {
+    bottom: 90;
+  }
+}
+
+
+@keyframes FadeOut {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+
+@-moz-keyframes spin { 
+  100% { -moz-transform: rotate(120deg); } 
+}
+@-webkit-keyframes spin { 
+  100% { -webkit-transform: rotate(120deg); } 
+}
+@keyframes spin { 
+  100% { 
+      -webkit-transform: rotate(120deg); 
+      transform:rotate(120deg); 
+  } 
+}

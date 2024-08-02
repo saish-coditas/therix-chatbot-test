@@ -1,0 +1,28 @@
+<div #scrollable id="chatContainer" class="chat-container" (scroll)="onContainerScroll()">
+    <app-smooth-height #chatWrapper class="chat-container__wrapper" [trigger]="chatData || loading">
+        <ng-container *ngFor="let chat of chatData; let i = index">
+            <div @itemAnimation [ngClass]="{'animate': true}" class={{chat.from}} [id]="'chat-'+i">
+                <div class="avatar" *ngIf="chat.from == 'system'">
+                    <img src="assets/icons/therix.svg" width="20px" height="24px" alt="therix" >
+                </div>
+                <div class="card">
+                    <ngx-skeleton-loader *ngIf="chat.loading"  class="shimmer" count="2" animation="pulse" />
+                    <!-- <span class="card-text" *ngIf="!chat.loading">{{chat.text}}</span> -->
+                    <markdown [lineNumbers]="false" ngPreserveWhitespaces class="markdown-editor card-text"
+                        [data]="chat.text" [ngStyle]="{display: chat.loading ? 'block': 'grid'}"></markdown>
+                    <div class="citation" *ngIf="chat.source && chat.source.length">
+                        <ng-container *ngIf="isString(chat.source)">
+                            <p>{{chat.source}} <i *ngIf="chat.pageNumber">Page no. {{chat.pageNumber}}</i></p>
+                        </ng-container>
+                        <ng-container *ngIf="!isString(chat.source)">
+                            <p *ngFor="let source of chat.source">{{source}} <i *ngIf="chat.pageNumber">Page no. {{chat.pageNumber}}</i></p>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+      </app-smooth-height>  
+</div>
+<div class="floating-btn" *ngIf="!isScrollToBottom" (click)="scrollToBottom()">
+    <img src="assets/icons/down-arrow.svg" width="20px" height="24px" alt="therix" >
+</div>

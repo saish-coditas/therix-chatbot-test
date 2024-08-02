@@ -1,0 +1,10 @@
+[
+    {
+        "tenant_name": "chat",
+        "backend_host": "https://xcagpmil7jhilripq6eesyyzmy0ecdsh.lambda-url.ap-south-1.on.aws"
+    },
+    {
+        "tenant_name": "localhost",
+        "backend_host": "https://xcagpmil7jhilripq6eesyyzmy0ecdsh.lambda-url.ap-south-1.on.aws"
+    }
+]

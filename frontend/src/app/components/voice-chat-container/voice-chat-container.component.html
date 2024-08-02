@@ -1,0 +1,8 @@
+<div id="conversation">
+    <ng-container *ngFor="let chat of chatData; let i = index">
+        <div @itemAnimation [class]="'message '+chat.from + ' ' + i" 
+            [ngClass]="{'fadeout': i !== (chatData.length - 1) && i !== (chatData.length - 2)}">
+            {{chat.text}}
+        </div>
+    </ng-container>
+</div>

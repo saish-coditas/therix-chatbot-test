@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="dot-1"></div>
+    <div class="dot-2"></div>
+    <div class="main-section">
+        <div class="hello">
+            <div class="hand-wave">
+                <!-- <span>👋🏻</span> -->
+                <img src="assets/icons/wave-hand.png" alt="hand">
+            </div>
+        </div>
+        <app-voice-chat-container [data]="chatHistory"></app-voice-chat-container>
+        
+        <div class="message" id="transcript">{{voiceResult}}</div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div class="tap-to-speak" [ngStyle]="{opacity: isListening ? '0': '1'}">
+                <span class="ml-1">Tap to speak</span>    
+            </div>
+            <a href="javascript:" class="microphone-circle" (click)="!isListening ? startListening(): stopListening()">
+                <div class="circlebox spin" [ngClass]="isListening ? 'nomask': 'ask'" ></div>
+                <div class="microphone">
+                    <img src="assets/icons/microphone.svg" alt="Microphone" width="30px" height="30px">
+                </div>
+            </a>
+            <a class="chat-teardrop" [routerLink]="['/chat']" ><img src="assets/icons/ChatTeardrop.svg" alt="chat" width="24px" height="24px"></a>
+        </div>
+    </div>
+</div>

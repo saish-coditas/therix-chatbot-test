@@ -1,0 +1,293 @@
+$footerHeight: 120;
+@mixin generate-masks($n, $rad) {
+    --r: calc(50%/(1 + 1/sin(90deg/#{$n})));
+    --g:/calc(4*var(--r)) calc(4*var(--r)) radial-gradient(50% 50%,#000 calc(100% - 0px),#0000) no-repeat;
+    $m1: ();
+    $m2: ();
+    @for $i from 1 through $n { 
+        $m1: append($m1, 
+        calc(50% + 50% * cos(360deg * ($i/$n))) 
+        calc(50% + 50% * sin(360deg * ($i/$n)))
+        var(--g), 
+        comma);
+        $m2: append($m2,
+        calc(50% + $rad * cos((360deg * $i + 180deg)/$n)) 
+        calc(50% + $rad * sin((360deg * $i + 180deg)/$n))
+        var(--g), 
+        comma);
+    }
+    mask:
+        #{$m1},
+        radial-gradient(115% 115%,#000 calc(var(--r)/tan(90deg/#{$n })),#0000 calc(var(--r)/tan(90deg/#{$n}) + 1px)) intersect,
+        radial-gradient(#000 0 0) exclude,
+        #{$m2};
+}
+.container {
+    width: 100%;
+    max-width: 1030px;
+    height: calc(100vh - 64px);
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 15px;
+
+    .main-section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: calc(100% - #{$footerHeight + 20}px);
+        .hello {
+            animation: SlideupAndFadeOut 1s ease 1.8s;
+            animation-fill-mode: forwards;
+            .hand-wave {
+                font-size: 58px;
+                font-weight: 600;
+                // position: absolute;
+                // left: calc(50% - 28px);
+                // top: 50%;
+                transform-origin: bottom;
+                animation: Wave 0.7s ease 1s 1 normal forwards;
+            }
+        }
+        #transcript {
+            font-size: 57.6px;
+            font-weight: 600;
+            line-height: 69.12px;
+            color: #FCFCFA;
+            font-style: italic;
+            margin-top: 32px;
+        }
+        
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        height: #{$footerHeight}px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .footer-content {
+            position: relative;
+            .chat-teardrop {
+                position: absolute;
+                left: -70px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #242129;
+                padding: 8px;
+                border-radius: 12px;
+                display: flex;
+            }
+            .tap-to-speak {
+                padding: 10px;
+                border-radius: 12px;
+                position: absolute;
+                top: -50px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-wrap: nowrap;
+                background: #000000;
+                color: #B2ACBD;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 14.4px;
+                letter-spacing: -0.01em;
+                transition: all 1s ease-out;
+            }
+            .microphone-circle {
+                position: relative;
+                .circlebox {
+                    width: 100px;
+                    aspect-ratio: 1;
+                    @include generate-masks(9, 85%);
+                    background-image: url('../../../assets/icons/star-gradient.png');
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    border-radius: 50%;
+                    position: relative;
+                    // transition: all 1s ease-out;
+                    &.spin {
+                        -webkit-animation: spin 20s linear infinite;
+                        -moz-animation: spin 20s linear infinite;
+                        animation: spin 20s linear infinite;
+                    }
+                    &.mask {
+                        -webkit-animation: Addmask 0.6s linear none;
+                        -moz-animation: Addmask 0.6s linear none;
+                        animation: Addmask 0.6s linear none;
+                    }
+                    &.nomask {
+                        -webkit-animation: Nomask 0.6s linear forwards;
+                        -moz-animation: Nomask 0.6s linear forwards;
+                        animation: Nomask 0.6s linear forwards;
+                    }
+                    
+                }
+                
+                .microphone {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 100px;
+                    height: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    -webkit-animation: none;
+                }
+            }
+        }
+    }
+}
+
+
+.dot-1 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: radial-gradient(circle, rgba(0, 238, 238, 0.1), transparent 220px) no-repeat;
+    animation: Dot1Animate 5s infinite alternate linear;
+}
+
+.dot-2 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: radial-gradient(circle, rgba(23, 55, 90, 0.4), transparent 220px) no-repeat;
+    animation: Dot2Animate 5s infinite alternate linear;
+}
+
+@keyframes Dot1Animate {
+    from {
+      background-position:left top;
+      background-size:100% 50%;
+    
+    }
+    49.9% {
+      background-position:left top;  
+    }
+    50% {
+      background-size:50% 100%;
+    }
+    50.1% {
+    //   background-position:right top; 
+    }
+    to { 
+    //   background-position:right top;
+      background-size:100% 50%;
+    }
+}
+@keyframes Dot2Animate {
+    from {
+      background-position:right top;
+      background-size:100% 50%;
+    
+    }
+    49.9% {
+      background-position:right top;  
+    }
+    50% {
+      background-size:50% 100%;
+    }
+    50.1% {
+    //   background-position:right top; 
+    }
+    to { 
+    //   background-position:right top;
+      background-size:100% 50%;
+    }
+}
+
+@keyframes Nomask {
+    0% {
+        mask: '*';
+        width: '*';
+    }
+    99% {
+        @include generate-masks(9, 100%);
+    }
+    100% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        mask: none;
+        width: 120px;
+    }
+}
+@keyframes Addmask {
+    0% {
+        mask: '*';
+    }
+    99% {
+        @include generate-masks(9, 85%);
+    }
+    100% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        width: 100px;
+    }
+}
+
+@keyframes SlideupAndFadeOut {
+    0% {
+        opacity: 1;
+        margin-top: 0;
+        transform: scale('*');
+    }
+    100% {
+        opacity: 0;
+        margin-top: -100px;
+        transform: scale(0);
+        display: none;
+    }
+}
+
+@keyframes Wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-25deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

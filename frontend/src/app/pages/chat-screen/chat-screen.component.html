@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="flex-column">
+        <div class="mid-section" [ngStyle]="{'justify-content': isChatContainerShow ? 'end': 'center'}">
+            <div class="intro-section" *ngIf="!isChatContainerShow">
+                <div class="">
+                    <h1 class="intro">👋🏻 Hey, how can I help you today?</h1>
+                </div>
+                <div>
+                    <div class="hints">
+                        <p>A few questions that you can ask...</p>
+                    </div>
+                    <div class="card-section">
+                        <ng-container *ngIf="suggestionQuestions && suggestionQuestions.length">
+                            <div class="card-upper-layer" *ngFor="let message of suggestionQuestions" (click)="handleMessageEvent(message)">
+                                <app-card [text]="message"></app-card>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-section" *ngIf="isChatContainerShow">
+                <app-chat-container [data]="chatHistory" [loading]="isLoading"></app-chat-container>
+            </div>
+        </div>
+        <div class="chatbox">
+            <app-input-field (messageTextEvent)="handleMessageEvent($event)" [disable]="isLoading"></app-input-field>
+        </div>
+    </div>
+</div>

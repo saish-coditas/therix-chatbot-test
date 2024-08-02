@@ -1,0 +1,13 @@
+
+.nav-header {
+  padding: 16px 32px 16px 32px;
+}
+
+.nav-brand {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr min-content;
+  width: 94px;
+  align-items: center;
+  column-gap: 10px;
+}

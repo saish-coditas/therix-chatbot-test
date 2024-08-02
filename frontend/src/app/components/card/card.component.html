@@ -1,0 +1,10 @@
+<div class="card-wrapper" [ngClass]="{'active': clickable}" >
+    <div class="card-inner">
+        <div class="card-text">
+            {{text}}
+        </div>
+    </div>
+    <div class="card-bottom" *ngIf="clickable">
+        <img src="assets/icons/right-chev.svg" alt="" srcset="">
+    </div>
+</div>
