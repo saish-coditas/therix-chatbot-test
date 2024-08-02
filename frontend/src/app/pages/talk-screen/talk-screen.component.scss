@@ -1,26 +1,26 @@
 $footerHeight: 120;
 @mixin generate-masks($n, $rad) {
-    --r: calc(50%/(1 + 1/sin(90deg/#{$n})));
-    --g:/calc(4*var(--r)) calc(4*var(--r)) radial-gradient(50% 50%,#000 calc(100% - 0px),#0000) no-repeat;
-    $m1: ();
-    $m2: ();
-    @for $i from 1 through $n { 
-        $m1: append($m1, 
-        calc(50% + 50% * cos(360deg * ($i/$n))) 
-        calc(50% + 50% * sin(360deg * ($i/$n)))
-        var(--g), 
-        comma);
-        $m2: append($m2,
-        calc(50% + $rad * cos((360deg * $i + 180deg)/$n)) 
-        calc(50% + $rad * sin((360deg * $i + 180deg)/$n))
-        var(--g), 
-        comma);
-    }
-    mask:
-        #{$m1},
-        radial-gradient(115% 115%,#000 calc(var(--r)/tan(90deg/#{$n })),#0000 calc(var(--r)/tan(90deg/#{$n}) + 1px)) intersect,
-        radial-gradient(#000 0 0) exclude,
-        #{$m2};
+    // --r: calc(50%/(1 + 1/sin(90deg/#{$n})));
+    // --g:/calc(4*var(--r)) calc(4*var(--r)) radial-gradient(50% 50%,#000 calc(100% - 0px),#0000) no-repeat;
+    // $m1: ();
+    // $m2: ();
+    // @for $i from 1 through $n { 
+    //     $m1: append($m1, 
+    //     calc(50% + 50% * cos(360deg * ($i/$n))) 
+    //     calc(50% + 50% * sin(360deg * ($i/$n)))
+    //     var(--g), 
+    //     comma);
+    //     $m2: append($m2,
+    //     calc(50% + $rad * cos((360deg * $i + 180deg)/$n)) 
+    //     calc(50% + $rad * sin((360deg * $i + 180deg)/$n))
+    //     var(--g), 
+    //     comma);
+    // }
+    // mask:
+    //     #{$m1},
+    //     radial-gradient(115% 115%,#000 calc(var(--r)/tan(90deg/#{$n })),#0000 calc(var(--r)/tan(90deg/#{$n}) + 1px)) intersect,
+    //     radial-gradient(#000 0 0) exclude,
+    //     #{$m2};
 }
 .container {
     width: 100%;

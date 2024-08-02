@@ -5,6 +5,6 @@
     },
     {
         "tenant_name": "localhost",
-        "backend_host": "https://xcagpmil7jhilripq6eesyyzmy0ecdsh.lambda-url.ap-south-1.on.aws"
+        "backend_host": "http://127.0.0.1:8000"
     }
 ]

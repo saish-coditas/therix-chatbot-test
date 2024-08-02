@@ -23,12 +23,17 @@ $fontList:
 }
 body {
     margin: 0;
+    padding: 0;
     background: linear-gradient(111.34deg, #140533 0%, #0A0A0A 100%);
     font-family: 'Sora-Regular', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    // overflow: hidden;
 }
 
 .dark {
     color: white;
+    // max-height: 100%;
     .shimmer {
         width: 100%;
         // height: 50px;
