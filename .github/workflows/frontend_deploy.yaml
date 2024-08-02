@@ -1,4 +1,4 @@
-name: Deploy to dev
+name: Deploy frontend to dev
 
 on:
   workflow_dispatch:
@@ -21,11 +21,11 @@ jobs:
           node-version: "20.11.1"
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
         working-directory: frontend
 
       - name: Build the app
-        run: npx ng build --configuration development
+        run: npm run build
         working-directory: frontend
 
       - name: Configure AWS credentials
