@@ -38,3 +38,4 @@ jobs:
       - name: Deploy to S3
         run: |
           aws s3 sync frontend/dist/therix-frontend/ s3://therix-frontend-test
+          aws cloudfront create-invalidation --distribution-id "EPJHCDQ4ZXWNX" --paths "/*"
